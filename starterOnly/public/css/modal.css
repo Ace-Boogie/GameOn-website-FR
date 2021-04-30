@@ -250,6 +250,12 @@ input {
     border: 2px solid #e54858;
 }
 
+/* ajout opacity 0 lorsque le form est validé */
+.formOpacity {
+    opacity: 0;
+}
+
+
 /*
 input[data-error]::after {
     content: attr(data-error);

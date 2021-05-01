@@ -159,7 +159,7 @@ function formsData(event) {
 }
 
 btnPostData.addEventListener("click", function validateData(event) {
-    event.stopPropagation();
+    event.preventDefault();
 
     if (resultFirstsTrue === true && resultLastsTrue === true && resultEmailsTrue === true && resultBirthdatesTrue === true
         && resultCitysTrue === true && resultGamesTrue === true && resultConditions === true) {
@@ -179,7 +179,7 @@ btnPostData.addEventListener("click", function validateData(event) {
     }
 });
 
-btnPostClose.addEventListener("click", function validate(event) {
+btnPostClose.addEventListener("click", function closeAfterValidation(event) {
     console.log("modal fermé via btn");
     if (textLabel.innerHTML === "Quelles villes ?") {
         textLabel.classList.remove("formOpacity");
@@ -195,6 +195,7 @@ btnPostClose.addEventListener("click", function validate(event) {
     textValidation.textContent = "";
     resultFinal = [];
     console.log(resultFinal);
+    return location.reload();
 
 })
 

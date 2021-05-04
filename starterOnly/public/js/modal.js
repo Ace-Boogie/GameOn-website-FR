@@ -1,10 +1,11 @@
-function editNav() {
-    let x = document.getElementById("myTopnav");
-    if (x.className === "header-nav") {
-        x.className += " responsive";
-    } else {
-        x.className = "header-nav";
-    }
+// Ajout de la partie responsive pour la navigation
+const myTopnav = document.getElementById("myTopnav");
+const iconeBars = document.querySelector(".icon");
+const headerLogo = document.querySelector(".header-logo");
+
+iconeBars.onclick = function editNav() {
+    myTopnav.classList.toggle("responsive");
+    headerLogo.classList.toggle("header-logo-responsive");
 }
 
 // DOM Elements
@@ -19,11 +20,13 @@ const btnPostData = document.getElementById("btnPostData");
 const formTag = document.querySelector("form");
 const birthdate = document.getElementById("birthdate");
 
+// Création du btn Close
 const btnPostClose = document.createElement("input");
 btnPostClose.classList.add("btn-submit", "button");
 btnPostClose.type = "submit";
 btnPostClose.value = "Close";
 
+//Création de la phrase de validation
 const textValidation = document.createElement("h3");
 textValidation.style.textAlign = "center";
 textValidation.innerHTML = "Merci,<br> Votre réservation a bien été enregistrée"
@@ -72,13 +75,10 @@ function launchModal() {
 
 // //close modal form
 const closeModal = (closed) => {
-    // if (closed === modalClose || btnPostData.value === "Close") {
-    if (closed === modalClose) {
-        closed.addEventListener("click", function closeModal() {
-            console.log("modal fermé");
-            modalbg.style.display = "none";
-        })
-    }
+    closed.addEventListener("click", function closeModal() {
+        // console.log("modal fermé");
+        modalbg.style.display = "none";
+    })
 }
 closeModal(modalClose);
 
@@ -104,25 +104,25 @@ function formsData(event) {
     for (let modalLabel of modalLabels) {
         if (event.target.value === modalLabel.innerText) {
             resultCitys = textLabel.innerText + " : " + event.target.value;
-            console.log(resultCitys);
+            // console.log(resultCitys);
             return resultCitysTrue = true;
 
         } else if (event.target.id === modalLabel.getAttribute("for")) {
             if (event.target.id === "birthdate" && event.target.value.match(dateFormat)) {
                 resultBirthdates = modalLabel.innerText + " : " + event.target.value;
-                console.log(resultBirthdates);
+                // console.log(resultBirthdates);
                 return resultBirthdatesTrue = true;
             }
             if (event.target.id === "email" && event.target.value.match(emailFormat)) {
                 resultEmails = modalLabel.innerText + " : " + event.target.value;
-                console.log(resultEmails);
+                // console.log(resultEmails);
                 return resultEmailsTrue = true;
 
             }
             if (event.target.id === "quantity") {
                 if (event.target.value.match(numberFormat)) {
                     resultGames = modalLabel.innerText + " : " + event.target.value;
-                    console.log(resultGames);
+                    // console.log(resultGames);
                     return resultGamesTrue = true;
                 } else {
                     return resultGamesTrue = false;
@@ -131,23 +131,23 @@ function formsData(event) {
 
             if (event.target.id === "first" && event.target.value.match(textFormat)) {
                 resultFirsts = modalLabel.innerText + " : " + event.target.value;
-                console.log(resultFirsts);
+                // console.log(resultFirsts);
                 return resultFirstsTrue = true;
             }
             if (event.target.id === "last" && event.target.value.match(textFormat)) {
                 resultLasts = modalLabel.innerText + " : " + event.target.value;
-                console.log(resultLasts);
+                // console.log(resultLasts);
                 return resultLastsTrue = true;
 
             }
             if (event.target.id === "checkbox1") {
                 if (event.target.checked) {
                     event.target.value = "ok";
-                    console.log(event.target.value);
+                    // console.log(event.target.value);
                     return resultConditions = true;
                 } else {
                     event.target.value = "off";
-                    console.log(event.target.value);
+                    // console.log(event.target.value);
                     return resultConditions = false;
                 }
             }
@@ -158,13 +158,15 @@ function formsData(event) {
 
 }
 
+// Validation du formulaire via btn
 btnPostData.addEventListener("click", function validateData(event) {
     event.preventDefault();
 
     if (resultFirstsTrue === true && resultLastsTrue === true && resultEmailsTrue === true && resultBirthdatesTrue === true
         && resultCitysTrue === true && resultGamesTrue === true && resultConditions === true) {
+        //Récupération des données dans un array
         resultFinal.push(resultFirsts, resultLasts, resultEmails, resultBirthdates, resultCitys, resultGames);
-        console.log(resultFinal);
+        // console.log(resultFinal);
         if (textLabel.innerHTML === "Quelles villes ?") {
             textLabel.classList.add("formOpacity");
         }
@@ -179,8 +181,9 @@ btnPostData.addEventListener("click", function validateData(event) {
     }
 });
 
+// Fermeture de la modal via btn
 btnPostClose.addEventListener("click", function closeAfterValidation(event) {
-    console.log("modal fermé via btn");
+    // console.log("modal fermé via btn");
     if (textLabel.innerHTML === "Quelles villes ?") {
         textLabel.classList.remove("formOpacity");
     }
@@ -190,11 +193,8 @@ btnPostClose.addEventListener("click", function closeAfterValidation(event) {
         }
     }
     modalbg.style.display = "none";
-    btnPostData.style.display = "block";
-    formTag.removeChild(btnPostClose);
-    textValidation.textContent = "";
-    resultFinal = [];
-    console.log(resultFinal);
+    // resultFinal = [];
+    // console.log(resultFinal);
     return location.reload();
 
 })

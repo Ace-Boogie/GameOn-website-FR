@@ -613,24 +613,6 @@ footer {
     margin: 0 20px;
 }
 
-
-@media screen and (max-width: 322px) {
-    img {
-        width: 80%;
-    }
-    .hero-text {
-        width: 83%;
-        font-size: 1.5rem;
-        margin-top: 5%;
-    }
-    .topnav a.icon {
-        margin-top: -103%;
-    }
-    .topnav.responsive .icon {
-        top: 96%;
-    }
-}
-
 @media screen and (max-width: 428px) {
     img {
         padding-left: 4%;
@@ -737,6 +719,22 @@ footer {
     .copyrights {
         margin-top: 0;
         text-align: center;
+    }
+}
+@media screen and (max-width: 322px) {
+    img {
+        width: 80%;
+    }
+    .hero-text {
+        width: 83%;
+        font-size: 1.5rem;
+        margin-top: 5%;
+    }
+    .topnav a.icon {
+        margin-top: -103%;
+    }
+    .topnav.responsive .icon {
+        top: 96%;
     }
 }
 
